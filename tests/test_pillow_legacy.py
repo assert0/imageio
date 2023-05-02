@@ -419,7 +419,7 @@ def test_gamma_correction(test_images):
     # Test result depending of application of gamma
     assert im1.meta["gamma"] < 1
     assert im1.mean() == im2.mean()
-    assert im2.mean() < im3.mean()
+    assert im2.mean() > im3.mean()
 
     # test_regression_302
     for im in (im1, im2, im3):

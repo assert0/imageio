@@ -286,9 +286,9 @@ class PillowPlugin(PluginV3):
 
         if apply_gamma and "gamma" in meta:
             gamma = float(meta["gamma"])
-            scale = float(65536 if image.dtype == np.uint16 else 255)
+            scale = float(65535 if image.dtype == np.uint16 else 255)
             gain = 1.0
-            image = ((image / scale) ** gamma) * scale * gain + 0.4999
+            image = ((image / scale) ** (1 / gamma)) * scale * gain + 0.4999
             image = np.round(image).astype(np.uint8)
 
         if writeable_output and not image.flags["WRITEABLE"]:

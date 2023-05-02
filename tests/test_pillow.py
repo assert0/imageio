@@ -160,7 +160,7 @@ def test_png_gamma_correction(test_images: Path):
 
     # Test result depending of application of gamma
     assert im1_meta["gamma"] < 1
-    assert im1.mean() < im2.mean()
+    assert im1.mean() > im2.mean()
 
     assert im1.shape == (512, 768, 3)
     assert im1.dtype == "uint8"

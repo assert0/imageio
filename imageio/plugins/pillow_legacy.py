@@ -402,9 +402,9 @@ class PNGFormat(PillowFormat):
                 except (KeyError, ValueError):
                     pass
                 else:
-                    scale = float(65536 if im.dtype == np.uint16 else 255)
+                    scale = float(65535 if im.dtype == np.uint16 else 255)
                     gain = 1.0
-                    im[:] = ((im / scale) ** gamma) * scale * gain + 0.4999
+                    im[:] = ((im / scale) ** (1 / gamma)) * scale * gain + 0.4999
             return im, info
 
     # --
